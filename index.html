@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Out There</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Out There navigation">
+        <a class="brand-block" href="#home" aria-label="Out There home">
+          <div class="brand-mark" aria-hidden="true">OT</div>
+          <div>
+            <p class="eyebrow">Out There</p>
+            <h1>Find something worth showing up for.</h1>
+          </div>
+        </a>
+
+        <nav class="nav-list" aria-label="Primary">
+          <a href="#home" data-route-link="home">Discovery</a>
+          <a href="#ask" data-route-link="ask">Ask Out There</a>
+          <a href="#results" data-route-link="results">Results</a>
+        </nav>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Current Brief</h2>
+            <button id="clearFilters" class="icon-button" type="button" aria-label="Reset brief" title="Reset brief">x</button>
+          </div>
+          <dl class="brief-list">
+            <div>
+              <dt>City</dt>
+              <dd id="briefCity">Any focus city</dd>
+            </div>
+            <div>
+              <dt>Theme</dt>
+              <dd id="briefTheme">Any theme</dd>
+            </div>
+            <div>
+              <dt>Budget</dt>
+              <dd id="briefBudget">Any budget</dd>
+            </div>
+            <div>
+              <dt>Timing</dt>
+              <dd id="briefTiming">Flexible</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel data-panel">
+          <div class="panel-heading">
+            <h2>Experience Engine</h2>
+            <span id="sourceCount" class="status-pill">0 seeds</span>
+          </div>
+          <p>
+            Local-first inventory today. Ready for partner feeds, public calendars, organizer submissions, and LLM ranking later.
+          </p>
+        </section>
+      </aside>
+
+      <main>
+        <section class="topbar">
+          <div>
+            <p class="eyebrow">Bangalore, Delhi, Haryana, Mumbai</p>
+            <h2 id="screenTitle">Offline experiences for curious people</h2>
+          </div>
+          <div class="topbar-actions">
+            <a class="secondary-action" href="#results">Browse all</a>
+            <a class="primary-action" href="#ask">Tell Out There</a>
+          </div>
+        </section>
+
+        <section id="screen-home" class="screen" data-screen="home">
+          <section class="hero-section">
+            <div class="hero-copy">
+              <p class="eyebrow">Offline-first discovery</p>
+              <h2>Tell Out There what you feel like doing. We will find the room, walk, workshop, or meetup that fits.</h2>
+              <p>
+                Start with art, AI, communication, and community-led meetups across India’s busiest creative cities.
+              </p>
+              <div class="hero-actions">
+                <a class="primary-action" href="#ask">Tell Out There what you want</a>
+                <a class="secondary-action" href="#results">Explore experiences</a>
+              </div>
+            </div>
+            <div class="hero-board" aria-label="Featured experience signals">
+              <div>
+                <span>12</span>
+                <p>seeded experiences</p>
+              </div>
+              <div>
+                <span>4</span>
+                <p>focus cities</p>
+              </div>
+              <div>
+                <span>5</span>
+                <p>clarifying signals</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-band">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">City Signals</p>
+                <h2>Start from where you are</h2>
+              </div>
+            </div>
+            <div id="cityGrid" class="city-grid"></div>
+          </section>
+
+          <section class="content-band">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Featured</p>
+                <h2>Experiences worth a look</h2>
+              </div>
+            </div>
+            <div id="featuredGrid" class="experience-grid"></div>
+          </section>
+        </section>
+
+        <section id="screen-ask" class="screen" data-screen="ask">
+          <section class="ask-layout">
+            <div class="matcher" aria-label="AI matching assistant">
+              <div class="matcher-header">
+                <div>
+                  <p class="eyebrow">Ask Out There</p>
+                  <h2>What kind of offline experience are you looking for?</h2>
+                </div>
+                <span class="status-dot" aria-label="Assistant ready"></span>
+              </div>
+
+              <div id="chatLog" class="chat-log" aria-live="polite"></div>
+
+              <form id="chatForm" class="chat-form">
+                <input
+                  id="chatInput"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="Try: I want an AI meetup in Bangalore this weekend"
+                  aria-label="Describe the experience you want"
+                />
+                <button type="submit">Ask</button>
+              </form>
+            </div>
+
+            <aside class="panel ask-side">
+              <p class="eyebrow">Try a prompt</p>
+              <button class="prompt-chip" type="button">I want an AI meetup in Bangalore this weekend</button>
+              <button class="prompt-chip" type="button">Find me an art walk in Mumbai</button>
+              <button class="prompt-chip" type="button">I want a communication meetup in Delhi under 500</button>
+              <button class="prompt-chip" type="button">Something social in Gurugram this evening</button>
+            </aside>
+          </section>
+        </section>
+
+        <section id="screen-results" class="screen" data-screen="results">
+          <section class="filter-bar" aria-label="Result filters">
+            <label>
+              <span>City</span>
+              <select id="cityFilter">
+                <option value="all">All focus cities</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Mumbai">Mumbai</option>
+              </select>
+            </label>
+            <label>
+              <span>Theme</span>
+              <select id="themeFilter">
+                <option value="all">All themes</option>
+                <option value="Art">Art</option>
+                <option value="AI">AI</option>
+                <option value="Meetup">Meetups</option>
+                <option value="Communication">Communication</option>
+              </select>
+            </label>
+            <label>
+              <span>Budget</span>
+              <select id="budgetFilter">
+                <option value="all">Any budget</option>
+                <option value="Free">Free</option>
+                <option value="Low">Under Rs 500</option>
+                <option value="Mid">Rs 500 to Rs 1500</option>
+                <option value="Premium">Rs 1500+</option>
+              </select>
+            </label>
+            <label>
+              <span>Timing</span>
+              <select id="timeFilter">
+                <option value="all">Any time</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+                <option value="weekend">Weekend</option>
+              </select>
+            </label>
+          </section>
+
+          <section class="content-band">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Recommended</p>
+                <h2 id="resultTitle">Best matches right now</h2>
+              </div>
+              <span id="matchCount" class="status-pill">0 matches</span>
+            </div>
+            <div id="experienceGrid" class="experience-grid"></div>
+          </section>
+        </section>
+
+        <section id="screen-detail" class="screen" data-screen="detail">
+          <div id="detailMount"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="experienceCardTemplate">
+      <article class="experience-card">
+        <a class="card-link" href="#">
+          <div class="card-media">
+            <span class="theme-badge"></span>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"></div>
+            <h3></h3>
+            <p></p>
+            <div class="card-footer"></div>
+          </div>
+        </a>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
